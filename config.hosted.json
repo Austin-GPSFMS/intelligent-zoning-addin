@@ -1,0 +1,15 @@
+{
+  "name": "Intelligent Zoning",
+  "supportEmail": "support@gpsfms.com",
+  "version": "1.0.0",
+  "items": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/Austin-GPSFMS/intelligent-zoning-addin@main/intelligentZoning.standalone.html",
+      "path": "ZoneAndMessagesLink/",
+      "menuName": {
+        "en": "Intelligent Zoning"
+      }
+    }
+  ],
+  "isSigned": false
+}
