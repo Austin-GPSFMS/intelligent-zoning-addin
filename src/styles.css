@@ -1,0 +1,359 @@
+/**
+ * Global styles for Intelligent Zoning.
+ *
+ * Zenith ships its design tokens via @geotab/zenith/dist/index.css. Anything
+ * below layers GPSFMS-specific page chrome on top. Lean on Zenith primitives
+ * first — only add custom CSS where Zenith doesn't already cover it.
+ */
+
+@import "@geotab/zenith/dist/index.css";
+
+:root {
+  --gpsfms-navy: #25477b;
+  --gpsfms-dark: #1c2b39;
+  --gpsfms-blue: #0084c2;
+  --gpsfms-blue-soft: #e5f1f8;
+  --gpsfms-light: #f4f4f4;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.iz-page {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--gpsfms-dark);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.iz-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.iz-page-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--gpsfms-dark);
+}
+
+.iz-page-header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+  max-width: 820px;
+}
+
+.iz-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.iz-toolbar > * {
+  min-width: 0;
+}
+
+.iz-muted {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.iz-muted a {
+  color: var(--gpsfms-blue);
+}
+
+/* ---- Progress ---- */
+
+.iz-progress {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iz-progress-bar {
+  flex: 1;
+  min-width: 160px;
+}
+
+.iz-progress-indeterminate {
+  height: 6px;
+  background: #dbeafe;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.iz-progress-indeterminate::after {
+  content: "";
+  position: absolute;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: var(--gpsfms-blue);
+  animation: iz-slide 1.2s infinite ease-in-out;
+}
+
+@keyframes iz-slide {
+  from { left: -40%; }
+  to { left: 100%; }
+}
+
+/* ---- Summary ---- */
+
+.iz-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.iz-tile-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gpsfms-dark);
+}
+
+.iz-tile-value small {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.iz-period {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ---- Map ---- */
+
+.iz-map {
+  height: 440px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f3f4f6;
+  z-index: 0;
+}
+
+.iz-pin {
+  background: var(--gpsfms-dark);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.iz-pin span {
+  line-height: 1;
+}
+
+/* ---- Import bar ---- */
+
+.iz-import-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---- Table ---- */
+
+.iz-table-wrap {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.iz-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.iz-table th,
+.iz-table td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.iz-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4b5563;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.iz-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.iz-table .iz-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.iz-table .iz-c {
+  text-align: center;
+  width: 34px;
+}
+
+.iz-rank {
+  color: #6b7280;
+}
+
+.iz-row {
+  cursor: pointer;
+}
+
+.iz-row:hover td {
+  background: #f9fafb;
+}
+
+.iz-row.iz-active td {
+  background: var(--gpsfms-blue-soft);
+}
+
+.iz-row.iz-imported td {
+  opacity: 0.6;
+}
+
+.iz-score {
+  white-space: nowrap;
+  min-width: 96px;
+}
+
+.iz-scorebar {
+  display: inline-block;
+  width: 56px;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 6px;
+  overflow: hidden;
+}
+
+.iz-scorebar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gpsfms-blue), #dc2626);
+}
+
+.iz-namecell {
+  min-width: 240px;
+}
+
+.iz-addr {
+  font-size: 11px;
+  color: #6b7280;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.iz-radiuscell {
+  width: 96px;
+}
+
+.iz-pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--gpsfms-blue-soft);
+  color: var(--gpsfms-navy);
+  white-space: nowrap;
+}
+
+.iz-actions {
+  white-space: nowrap;
+}
+
+.iz-actions > * {
+  margin-right: 6px;
+}
+
+.iz-maplink {
+  color: var(--gpsfms-blue);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.iz-maplink:hover {
+  text-decoration: underline;
+}
+
+.iz-badge-ok {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.iz-empty {
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+  background: #f9fafb;
+  border: 1px dashed #e5e7eb;
+  border-radius: 6px;
+}
+
+.iz-footer {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.iz-footer code {
+  background: #f3f4f6;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 11px;
+}
